@@ -3,164 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>San Valentín 🌸💖</title>
+<title>Noche Mágica 🌙</title>
 
 <style>
-*{
-    box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
 }
 
 body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#ff4e8a,#ff9ac2,#ffc1da);
-    font-family:'Segoe UI', sans-serif;
-    overflow-x:hidden;
-    padding:20px;
+    background: radial-gradient(circle at top,#1a1a3c 0%,#0f0c29 60%,#000 100%);
 }
 
-/* Flores */
-.flor{
-    position:absolute;
-    font-size:30px;
-    opacity:0.7;
-}
-
-.flor1{ top:20px; left:20px; }
-.flor2{ bottom:20px; right:20px; }
-.flor3{ top:30px; right:50px; }
-.flor4{ bottom:40px; left:60px; }
-
-/* Tarjeta */
-.tarjeta{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:center;
-    gap:30px;
-    background:white;
-    padding:40px;
-    border-radius:35px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.3);
-    max-width:900px;
+/* Canvas */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
     width:100%;
-    position:relative;
-    z-index:2;
-}
-
-/* Imagen */
-.tarjeta img{
-    width:100%;
-    max-width:300px;
-    border-radius:25px;
-    border:8px solid #ff4e8a;
-    box-shadow:0 15px 40px rgba(0,0,0,0.4);
-    animation:latido 2s infinite;
-}
-
-@keyframes latido{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.05);}
-    100%{transform:scale(1);}
+    height:100%;
+    z-index:0;
 }
 
 /* Texto */
-.mensaje{
-    font-size:20px;
-    color:#444;
-    max-width:420px;
-    text-align:center;
-}
-
-.mensaje h1{
-    color:#ff2e63;
-    margin-bottom:20px;
-    font-size:28px;
-}
-
-/* Corazones */
-.heart{
+.texto{
     position:absolute;
-    top:-20px;
-    animation:caer linear infinite;
+    top:5vh;
+    width:100%;
+    text-align:center;
+    color:white;
+    z-index:2;
 }
 
-@keyframes caer{
-    to{
-        transform:translateY(110vh);
-    }
+.texto h1{
+    font-size:clamp(28px,5vw,45px);
 }
 
-/* 📱 Ajustes para celular */
-@media (max-width: 600px){
+.texto p{
+    margin-top:10px;
+    opacity:0.9;
+}
 
-    .tarjeta{
-        padding:25px;
-        border-radius:25px;
-    }
+/* BOTÓN */
+.boton{
+    position:absolute;
+    bottom:6vh;
+    left:50%;
+    transform:translateX(-50%);
+    padding:14px 30px;
+    border:none;
+    border-radius:40px;
+    background:gold;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:3;
+    transition:0.3s;
+}
 
-    .mensaje{
-        font-size:18px;
-    }
+.boton:hover{
+    transform:translateX(-50%) scale(1.1);
+}
 
-    .mensaje h1{
-        font-size:24px;
-    }
+/* MENSAJE CENTRADO */
+.mensaje{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.7);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    padding:30px 40px;
+    border-radius:25px;
+    color:white;
+    opacity:0;
+    transition:0.4s;
+    z-index:4;
+    text-align:center;
+    max-width:85%;
+    line-height:1.7;
+    font-size:clamp(16px,2vw,22px);
+}
 
-    .flor{
-        font-size:22px;
-    }
+.mensaje.activo{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+/* Fondo oscuro cuando mensaje aparece */
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    opacity:0;
+    transition:0.4s;
+    z-index:3;
+}
+
+.overlay.activo{
+    opacity:1;
 }
 </style>
 </head>
-
 <body>
 
-<div class="flor flor1">🌸</div>
-<div class="flor flor2">🌹</div>
-<div class="flor flor3">🌷</div>
-<div class="flor flor4">💐</div>
+<canvas id="canvas"></canvas>
 
-<div class="tarjeta">
-    <img src="foto.png" alt="Nuestra foto 💖">
-
-  <div class="mensaje">
-    <h1>Feliz San Valentín 💖</h1>
-    
-    Desde que llegaste a mi vida todo cambió para bien ✨ 
-    Tu sonrisa ilumina mis días y tu mirada me da una tranquilidad que no sabía que necesitaba 💕 
-    No estoy aquí por un momento ni por emoción pasajera… estoy aquí porque de verdad quiero estar contigo. 
-    Quiero acompañarte en tus días buenos y en los difíciles, ser tu apoyo, tu lugar seguro y elegirte cada día sin dudas 🤍 
-    No prometo ser perfecto, pero sí ser sincero, leal y luchar por lo nuestro. 
-    No sé qué nos depare el futuro… pero si es contigo, yo lo quiero así 🌹 
-    TE QUIERO MUCHO MI FUTURA ESPOSITA 💍🐻
+<div class="texto">
+    <h1>Bajo la Luna 🌙</h1>
+    <p>Los girasoles también brillan de noche ✨</p>
 </div>
 
+<div id="overlay" class="overlay"></div>
 
+<div id="mensaje" class="mensaje">
+🌙  
+Si alguna vez dudas de lo especial que eres,  
+recuerda que incluso la luna necesita oscuridad  
+para poder brillar.  
+
+🌻  
+Tú también iluminas más de lo que imaginas. ✨💛
 </div>
+
+<button id="boton" class="boton" onclick="mostrarMensaje()">Toca Aquí 💌</button>
 
 <script>
-for(let i=0; i<40; i++){
-    let heart = document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="💖";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(Math.random()*4+3)+"s";
-    heart.style.fontSize=(Math.random()*25+15)+"px";
-    document.body.appendChild(heart);
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+
+function resizeCanvas(){
+    const dpr=window.devicePixelRatio||1;
+    canvas.width=window.innerWidth*dpr;
+    canvas.height=window.innerHeight*dpr;
+    canvas.style.width=window.innerWidth+"px";
+    canvas.style.height=window.innerHeight+"px";
+    ctx.setTransform(dpr,0,0,dpr,0,0);
 }
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+
+/* Estrellas */
+let estrellas=[];
+for(let i=0;i<100;i++){
+    estrellas.push({
+        x:Math.random()*window.innerWidth,
+        y:Math.random()*window.innerHeight,
+        size:Math.random()*2,
+        alpha:Math.random()
+    });
+}
+
+function dibujarFlor(x,y,escala){
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.scale(escala,escala);
+
+    for(let i=0;i<16;i++){
+        ctx.rotate(Math.PI/8);
+        ctx.beginPath();
+        ctx.fillStyle="orange";
+        ctx.ellipse(0,50,18,50,0,0,Math.PI*2);
+        ctx.fill();
+    }
+
+    ctx.beginPath();
+    ctx.fillStyle="#5d2c04";
+    ctx.arc(0,0,35,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.restore();
+}
+
+let t=0;
+
+function animar(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    const w=canvas.width/(window.devicePixelRatio||1);
+    const h=canvas.height/(window.devicePixelRatio||1);
+
+    estrellas.forEach(e=>{
+        ctx.beginPath();
+        ctx.fillStyle="rgba(255,255,255,"+e.alpha+")";
+        ctx.arc(e.x,e.y,e.size,0,Math.PI*2);
+        ctx.fill();
+        e.alpha+=0.01*(Math.random()-0.5);
+    });
+
+    t+=0.01;
+    dibujarFlor(w*0.5,h*0.65,0.8+Math.sin(t)*0.05);
+    dibujarFlor(w*0.85,h*0.3,0.4);
+    dibujarFlor(w*0.15,h*0.4,0.4);
+
+    requestAnimationFrame(animar);
+}
+animar();
+
+function mostrarMensaje(){
+    const mensaje=document.getElementById("mensaje");
+    const overlay=document.getElementById("overlay");
+    const boton=document.getElementById("boton");
+
+    mensaje.classList.toggle("activo");
+    overlay.classList.toggle("activo");
+
+    if(mensaje.classList.contains("activo")){
+        boton.innerText="Cerrar 💛";
+    }else{
+        boton.innerText="Toca Aquí 💌";
+    }
+}
+
+document.getElementById("overlay").onclick=mostrarMensaje;
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
