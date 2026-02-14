@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>San Valentín 🌸💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff4e8a,#ff9ac2,#ffc1da);
+    font-family:'Segoe UI', sans-serif;
+    overflow:hidden;
+}
+
+/* Flores decorativas */
+.flor{
+    position:absolute;
+    font-size:30px;
+    opacity:0.7;
+}
+
+.flor1{ top:20px; left:20px; }
+.flor2{ bottom:20px; right:20px; }
+.flor3{ top:30px; right:50px; }
+.flor4{ bottom:40px; left:60px; }
+
+/* Tarjeta principal */
+.tarjeta{
+    display:flex;
+    align-items:center;
+    gap:40px;
+    background:white;
+    padding:50px;
+    border-radius:35px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.3);
+    max-width:900px;
+    position:relative;
+    z-index:2;
+}
+
+/* Imagen */
+.tarjeta img{
+    width:300px;
+    border-radius:25px;
+    border:8px solid #ff4e8a;
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    animation:latido 2s infinite;
+}
+
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
+}
+
+/* Texto */
+.mensaje{
+    font-size:22px;
+    color:#444;
+    max-width:420px;
+}
+
+.mensaje h1{
+    color:#ff2e63;
+    margin-bottom:20px;
+}
+
+/* Corazones flotando */
+.heart{
+    position:absolute;
+    top:-20px;
+    animation:caer linear infinite;
+}
+
+@keyframes caer{
+    to{
+        transform:translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="flor flor1">🌸</div>
+<div class="flor flor2">🌹</div>
+<div class="flor flor3">🌷</div>
+<div class="flor flor4">💐</div>
+
+<div class="tarjeta">
+    <img src="foto.png" alt="Nuestra foto 💖">
+
+    <div class="mensaje">
+        <h1>Feliz San Valentín 💖</h1>
+        Desde que llegaste a mi vida todo se siente más bonito ✨<br><br>
+        Tu sonrisa ilumina mis días y tu mirada me da tranquilidad 💕<br><br>
+        No sé qué nos espera mañana…<br>
+        pero hoy quiero elegirte a ti 🌹
+    </div>
+</div>
+
+<script>
+// Lluvia de corazones
+for(let i=0; i<40; i++){
+    let heart = document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*4+3)+"s";
+    heart.style.fontSize=(Math.random()*25+15)+"px";
+    document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
