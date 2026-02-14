@@ -6,21 +6,26 @@
 <title>San Valentín 🌸💖</title>
 
 <style>
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     background:linear-gradient(135deg,#ff4e8a,#ff9ac2,#ffc1da);
     font-family:'Segoe UI', sans-serif;
-    overflow:hidden;
+    overflow-x:hidden;
+    padding:20px;
 }
 
 /* Flores decorativas */
 .flor{
     position:absolute;
-    font-size:30px;
+    font-size:28px;
     opacity:0.7;
 }
 
@@ -35,10 +40,11 @@ body{
     align-items:center;
     gap:40px;
     background:white;
-    padding:50px;
+    padding:40px;
     border-radius:35px;
     box-shadow:0 20px 60px rgba(0,0,0,0.3);
     max-width:900px;
+    width:100%;
     position:relative;
     z-index:2;
 }
@@ -46,6 +52,8 @@ body{
 /* Imagen */
 .tarjeta img{
     width:300px;
+    max-width:100%;
+    height:auto;
     border-radius:25px;
     border:8px solid #ff4e8a;
     box-shadow:0 15px 40px rgba(0,0,0,0.4);
@@ -80,6 +88,46 @@ body{
 @keyframes caer{
     to{
         transform:translateY(110vh);
+    }
+}
+
+/* 🔥 RESPONSIVE PARA CELULAR */
+@media (max-width:768px){
+
+    .tarjeta{
+        flex-direction:column;
+        text-align:center;
+        padding:30px;
+    }
+
+    .mensaje{
+        font-size:18px;
+        max-width:100%;
+    }
+
+    .tarjeta img{
+        width:220px;
+        margin-bottom:15px;
+    }
+
+    .flor{
+        font-size:22px;
+    }
+}
+
+@media (max-width:480px){
+
+    .mensaje{
+        font-size:16px;
+    }
+
+    .tarjeta{
+        padding:20px;
+        border-radius:25px;
+    }
+
+    .tarjeta img{
+        width:180px;
     }
 }
 </style>
@@ -119,3 +167,4 @@ for(let i=0; i<40; i++){
 
 </body>
 </html>
+
